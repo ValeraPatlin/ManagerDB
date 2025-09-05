@@ -1,0 +1,104 @@
+\hypertarget{classFormCreateDB}{}\section{Form\+Create\+DB Class Reference}
+\label{classFormCreateDB}\index{Form\+Create\+DB@{Form\+Create\+DB}}
+
+
+The \hyperlink{classFormCreateDB}{Form\+Create\+DB} class для подключения к базе данных  
+
+
+
+
+{\ttfamily \#include $<$formcreatedb.\+h$>$}
+
+
+
+Inheritance diagram for Form\+Create\+DB\+:
+% FIG 0
+
+
+Collaboration diagram for Form\+Create\+DB\+:
+% FIG 1
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classFormCreateDB_a72e0fff6c7528df5efa05e4c068f2581}{signal\+\_\+open\+Db} (const Q\+String add\+Data\+Base, const Q\+String name\+\_\+db, const int port, const Q\+String host\+Name, const Q\+String user\+Name, const Q\+String passwd)
+\begin{DoxyCompactList}\small\item\em signal\+\_\+open\+Db сигнал отправляет данные для подключение к базе данных \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFormCreateDB_a5b1f53876eb408b1fcfdc2b5dbd39315}\label{classFormCreateDB_a5b1f53876eb408b1fcfdc2b5dbd39315}} 
+void \hyperlink{classFormCreateDB_a5b1f53876eb408b1fcfdc2b5dbd39315}{signal\+\_\+clear\+Name\+List\+Table\+Db} ()
+\begin{DoxyCompactList}\small\item\em signal\+\_\+clear\+Name\+List\+Table\+Db -\/ очиститиь список таблиц в базе данных \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFormCreateDB_a9ad836ba70aa3ad1eba0a37cec79579c}{Form\+Create\+DB} (Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classFormCreateDB}{Form\+Create\+DB} конструктор по умолчанию \end{DoxyCompactList}\item 
+void \hyperlink{classFormCreateDB_afeed859b4fdc309231463a7b4bee5af1}{data\+Info} (const Q\+String \&str\+Info)
+\begin{DoxyCompactList}\small\item\em data\+Info -\/ для вывода сообщений и ошибок \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classFormCreateDB}{Form\+Create\+DB} class для подключения к базе данных 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFormCreateDB_a9ad836ba70aa3ad1eba0a37cec79579c}\label{classFormCreateDB_a9ad836ba70aa3ad1eba0a37cec79579c}} 
+\index{Form\+Create\+DB@{Form\+Create\+DB}!Form\+Create\+DB@{Form\+Create\+DB}}
+\index{Form\+Create\+DB@{Form\+Create\+DB}!Form\+Create\+DB@{Form\+Create\+DB}}
+\subsubsection{\texorpdfstring{Form\+Create\+D\+B()}{FormCreateDB()}}
+{\footnotesize\ttfamily Form\+Create\+D\+B\+::\+Form\+Create\+DB (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\hyperlink{classFormCreateDB}{Form\+Create\+DB} конструктор по умолчанию 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classFormCreateDB_afeed859b4fdc309231463a7b4bee5af1}\label{classFormCreateDB_afeed859b4fdc309231463a7b4bee5af1}} 
+\index{Form\+Create\+DB@{Form\+Create\+DB}!data\+Info@{data\+Info}}
+\index{data\+Info@{data\+Info}!Form\+Create\+DB@{Form\+Create\+DB}}
+\subsubsection{\texorpdfstring{data\+Info()}{dataInfo()}}
+{\footnotesize\ttfamily void Form\+Create\+D\+B\+::data\+Info (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{str\+Info }\end{DoxyParamCaption})}
+
+
+
+data\+Info -\/ для вывода сообщений и ошибок 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str\+Info} & -\/ сообщение для вывода \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFormCreateDB_a72e0fff6c7528df5efa05e4c068f2581}\label{classFormCreateDB_a72e0fff6c7528df5efa05e4c068f2581}} 
+\index{Form\+Create\+DB@{Form\+Create\+DB}!signal\+\_\+open\+Db@{signal\+\_\+open\+Db}}
+\index{signal\+\_\+open\+Db@{signal\+\_\+open\+Db}!Form\+Create\+DB@{Form\+Create\+DB}}
+\subsubsection{\texorpdfstring{signal\+\_\+open\+Db}{signal\_openDb}}
+{\footnotesize\ttfamily void Form\+Create\+D\+B\+::signal\+\_\+open\+Db (\begin{DoxyParamCaption}\item[{const Q\+String}]{add\+Data\+Base,  }\item[{const Q\+String}]{name\+\_\+db,  }\item[{const int}]{port,  }\item[{const Q\+String}]{host\+Name,  }\item[{const Q\+String}]{user\+Name,  }\item[{const Q\+String}]{passwd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+signal\+\_\+open\+Db сигнал отправляет данные для подключение к базе данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em add\+Data\+Base} & -\/ тип базы данных \\
+\hline
+{\em name\+\_\+db} & -\/ имя базы данных \\
+\hline
+{\em port} & -\/ порт \\
+\hline
+{\em host\+Name} & -\/ ip адресс \\
+\hline
+{\em user\+Name} & -\/ имя пользователя \\
+\hline
+{\em passwd} & -\/ пароль \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+formcreatedb.\+h\item 
+formcreatedb.\+cpp\end{DoxyCompactItemize}

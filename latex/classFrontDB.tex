@@ -1,0 +1,169 @@
+\hypertarget{classFrontDB}{}\section{Front\+DB Class Reference}
+\label{classFrontDB}\index{Front\+DB@{Front\+DB}}
+
+
+The \hyperlink{classFrontDB}{Front\+DB} class -\/ для подключения к базе данных и выполнение запросов  
+
+
+
+
+{\ttfamily \#include $<$frontdb.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classFrontDB_a1c9f83345d27143eb06c8f530ee755d6}\label{classFrontDB_a1c9f83345d27143eb06c8f530ee755d6}} 
+\hyperlink{classFrontDB_a1c9f83345d27143eb06c8f530ee755d6}{Front\+DB} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classFrontDB}{Front\+DB} -\/ конструктор \end{DoxyCompactList}\item 
+bool \hyperlink{classFrontDB_a70a99620d0c21f2ac0af229218d4f0f2}{open\+Db} (const Q\+String \&add\+Data\+Base, const Q\+String \&name\+\_\+db, const int port, const Q\+String \&host\+Name, const Q\+String \&user\+Name, const Q\+String \&passwd)
+\begin{DoxyCompactList}\small\item\em open\+Db -\/ подключение к базе данных \end{DoxyCompactList}\item 
+Q\+String\+List \hyperlink{classFrontDB_aa5cc2999b6731290015b11908b58d8da}{table\+Name} ()
+\begin{DoxyCompactList}\small\item\em table\+Name -\/ запрос для получения списка таблиц из базы данных \end{DoxyCompactList}\item 
+Q\+String\+List \hyperlink{classFrontDB_a6245bace114b88f4cb29bf7c6b7da9f9}{select\+Column\+Name} (const Q\+String \&teble\+Name)
+\begin{DoxyCompactList}\small\item\em select\+Column\+Name -\/ получение имён столбцов \end{DoxyCompactList}\item 
+Q\+String\+List \hyperlink{classFrontDB_a310f18bfa2665bd435834982f32b8b43}{select\+Table} (const Q\+String \&teble\+Name)
+\begin{DoxyCompactList}\small\item\em select\+Table -\/ запрос select \end{DoxyCompactList}\item 
+const Q\+String\+List \hyperlink{classFrontDB_a7cb7bf22db3101bdb02a8f68c0379ee3}{request\+Db\+\_\+select} (const Q\+String \&str\+Query)
+\begin{DoxyCompactList}\small\item\em request\+Db\+\_\+select -\/ запрос select \end{DoxyCompactList}\item 
+const bool \hyperlink{classFrontDB_a731b840c8c44ef003f98abbee2742895}{request\+Db} (const Q\+String \&str\+Query)
+\begin{DoxyCompactList}\small\item\em request\+Db \end{DoxyCompactList}\item 
+int \hyperlink{classFrontDB_ae0f6e2cc301531b790278a517a74b91a}{get\+Number\+Row} ()
+\begin{DoxyCompactList}\small\item\em get\+Number\+Row \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classFrontDB}{Front\+DB} class -\/ для подключения к базе данных и выполнение запросов 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classFrontDB_ae0f6e2cc301531b790278a517a74b91a}\label{classFrontDB_ae0f6e2cc301531b790278a517a74b91a}} 
+\index{Front\+DB@{Front\+DB}!get\+Number\+Row@{get\+Number\+Row}}
+\index{get\+Number\+Row@{get\+Number\+Row}!Front\+DB@{Front\+DB}}
+\subsubsection{\texorpdfstring{get\+Number\+Row()}{getNumberRow()}}
+{\footnotesize\ttfamily int Front\+D\+B\+::get\+Number\+Row (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Number\+Row 
+
+\begin{DoxyReturn}{Returns}
+возращает количество строк в таблице 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFrontDB_a70a99620d0c21f2ac0af229218d4f0f2}\label{classFrontDB_a70a99620d0c21f2ac0af229218d4f0f2}} 
+\index{Front\+DB@{Front\+DB}!open\+Db@{open\+Db}}
+\index{open\+Db@{open\+Db}!Front\+DB@{Front\+DB}}
+\subsubsection{\texorpdfstring{open\+Db()}{openDb()}}
+{\footnotesize\ttfamily bool Front\+D\+B\+::open\+Db (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{add\+Data\+Base,  }\item[{const Q\+String \&}]{name\+\_\+db,  }\item[{const int}]{port,  }\item[{const Q\+String \&}]{host\+Name,  }\item[{const Q\+String \&}]{user\+Name,  }\item[{const Q\+String \&}]{passwd }\end{DoxyParamCaption})}
+
+
+
+open\+Db -\/ подключение к базе данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em add\+Data\+Base} & -\/ тип бызы данных \\
+\hline
+{\em name\+\_\+db} & -\/ имя базы данных \\
+\hline
+{\em port} & -\/ порт \\
+\hline
+{\em host\+Name} & -\/ ip адрес \\
+\hline
+{\em user\+Name} & -\/ имя пользователя \\
+\hline
+{\em passwd} & -\/ пароль \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ удалось ли подключиться к базе данных 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFrontDB_a731b840c8c44ef003f98abbee2742895}\label{classFrontDB_a731b840c8c44ef003f98abbee2742895}} 
+\index{Front\+DB@{Front\+DB}!request\+Db@{request\+Db}}
+\index{request\+Db@{request\+Db}!Front\+DB@{Front\+DB}}
+\subsubsection{\texorpdfstring{request\+Db()}{requestDb()}}
+{\footnotesize\ttfamily const bool Front\+D\+B\+::request\+Db (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{str\+Query }\end{DoxyParamCaption})}
+
+
+
+request\+Db 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str\+Query} & -\/ запрос в базу данных \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFrontDB_a7cb7bf22db3101bdb02a8f68c0379ee3}\label{classFrontDB_a7cb7bf22db3101bdb02a8f68c0379ee3}} 
+\index{Front\+DB@{Front\+DB}!request\+Db\+\_\+select@{request\+Db\+\_\+select}}
+\index{request\+Db\+\_\+select@{request\+Db\+\_\+select}!Front\+DB@{Front\+DB}}
+\subsubsection{\texorpdfstring{request\+Db\+\_\+select()}{requestDb\_select()}}
+{\footnotesize\ttfamily const Q\+String\+List Front\+D\+B\+::request\+Db\+\_\+select (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{str\+Query }\end{DoxyParamCaption})}
+
+
+
+request\+Db\+\_\+select -\/ запрос select 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str\+Query} & -\/ запрос в базу данных \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFrontDB_a6245bace114b88f4cb29bf7c6b7da9f9}\label{classFrontDB_a6245bace114b88f4cb29bf7c6b7da9f9}} 
+\index{Front\+DB@{Front\+DB}!select\+Column\+Name@{select\+Column\+Name}}
+\index{select\+Column\+Name@{select\+Column\+Name}!Front\+DB@{Front\+DB}}
+\subsubsection{\texorpdfstring{select\+Column\+Name()}{selectColumnName()}}
+{\footnotesize\ttfamily Q\+String\+List Front\+D\+B\+::select\+Column\+Name (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{teble\+Name }\end{DoxyParamCaption})}
+
+
+
+select\+Column\+Name -\/ получение имён столбцов 
+
+
+\begin{DoxyParams}{Parameters}
+{\em teble\+Name} & -\/ имя таблицы \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFrontDB_a310f18bfa2665bd435834982f32b8b43}\label{classFrontDB_a310f18bfa2665bd435834982f32b8b43}} 
+\index{Front\+DB@{Front\+DB}!select\+Table@{select\+Table}}
+\index{select\+Table@{select\+Table}!Front\+DB@{Front\+DB}}
+\subsubsection{\texorpdfstring{select\+Table()}{selectTable()}}
+{\footnotesize\ttfamily Q\+String\+List Front\+D\+B\+::select\+Table (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{teble\+Name }\end{DoxyParamCaption})}
+
+
+
+select\+Table -\/ запрос select 
+
+
+\begin{DoxyParams}{Parameters}
+{\em teble\+Name} & -\/ имя таблицы \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFrontDB_aa5cc2999b6731290015b11908b58d8da}\label{classFrontDB_aa5cc2999b6731290015b11908b58d8da}} 
+\index{Front\+DB@{Front\+DB}!table\+Name@{table\+Name}}
+\index{table\+Name@{table\+Name}!Front\+DB@{Front\+DB}}
+\subsubsection{\texorpdfstring{table\+Name()}{tableName()}}
+{\footnotesize\ttfamily Q\+String\+List Front\+D\+B\+::table\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+table\+Name -\/ запрос для получения списка таблиц из базы данных 
+
+\begin{DoxyReturn}{Returns}
+-\/ 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+frontdb.\+h\item 
+frontdb.\+cpp\end{DoxyCompactItemize}

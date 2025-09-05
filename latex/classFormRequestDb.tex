@@ -1,0 +1,225 @@
+\hypertarget{classFormRequestDb}{}\section{Form\+Request\+Db Class Reference}
+\label{classFormRequestDb}\index{Form\+Request\+Db@{Form\+Request\+Db}}
+
+
+The \hyperlink{classFormRequestDb}{Form\+Request\+Db} class -\/ для вывода данных и формирования запросов к базе данных  
+
+
+
+
+{\ttfamily \#include $<$formrequestdb.\+h$>$}
+
+
+
+Inheritance diagram for Form\+Request\+Db\+:
+% FIG 0
+
+
+Collaboration diagram for Form\+Request\+Db\+:
+% FIG 1
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classFormRequestDb_a8e2f772b54c5bc321bb2aafd410881af}{signal\+\_\+request\+Db} (const Q\+String \&str\+Query, bool flag\+Select)
+\begin{DoxyCompactList}\small\item\em signal\+\_\+request\+Db -\/ сигнал для передачи запроса к базе данных \end{DoxyCompactList}\item 
+void \hyperlink{classFormRequestDb_a975c3238a2e70f63172b2e7dd2a3d17d}{signal\+\_\+update\+Db} (const Q\+String \&str\+Query)
+\begin{DoxyCompactList}\small\item\em signal\+\_\+update\+Db -\/ обновление таблицы базы данных \end{DoxyCompactList}\item 
+void \hyperlink{classFormRequestDb_a3e6c1c86440f834a79f43e82a1568207}{signal\+\_\+update\+Table} (const Q\+String \&table\+Name)
+\begin{DoxyCompactList}\small\item\em signal\+\_\+update\+Table \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFormRequestDb_a073afd7a2f960c039e3a30e823123939}{Form\+Request\+Db} (Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classFormRequestDb}{Form\+Request\+Db} -\/ конструктор по умолчанию \end{DoxyCompactList}\item 
+void \hyperlink{classFormRequestDb_a383d0f163ad200d2438e1549df626c4e}{set\+Column\+Name} (const Q\+String\+List \&column)
+\begin{DoxyCompactList}\small\item\em set\+Column\+Name -\/ принять список имён колонок \end{DoxyCompactList}\item 
+void \hyperlink{classFormRequestDb_a6344496d9d92e92078dacf8218cae768}{set\+Data\+Table} (const Q\+String\+List \&data)
+\begin{DoxyCompactList}\small\item\em set\+Data\+Table -\/ принять данные из базы данных \end{DoxyCompactList}\item 
+void \hyperlink{classFormRequestDb_ae6ec41ba642b5b9351d5d5077ffb97e5}{set\+Count\+Row} (const unsigned int count)
+\begin{DoxyCompactList}\small\item\em set\+Count\+Row -\/ устанавливает количество строк в таблице \end{DoxyCompactList}\item 
+bool \hyperlink{classFormRequestDb_af37eecece828d15fe8a0f2025bba6d6c}{select\+Table} ()
+\begin{DoxyCompactList}\small\item\em select\+Table заполняет основную таблицу данными \end{DoxyCompactList}\item 
+bool \hyperlink{classFormRequestDb_a9752fbc1286338cf3fe1a9fee28ac4a7}{result\+Data} (const Q\+String\+List \&data)
+\begin{DoxyCompactList}\small\item\em result\+Data вывод данных после запроса пользователя \end{DoxyCompactList}\item 
+void \hyperlink{classFormRequestDb_ac5fe463263f876ef7e6531b99d6f224d}{set\+Table\+Name} (const Q\+String \&table\+Name)
+\begin{DoxyCompactList}\small\item\em set\+Table\+Name -\/ принять имя таблицы \end{DoxyCompactList}\item 
+void \hyperlink{classFormRequestDb_ae86ba771347db116c4dc0d92b6dea2a8}{enabled\+Button} (bool flag)
+\begin{DoxyCompactList}\small\item\em enabled\+Button делает доступнм кнопки при подключении к базе данных \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classFormRequestDb}{Form\+Request\+Db} class -\/ для вывода данных и формирования запросов к базе данных 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFormRequestDb_a073afd7a2f960c039e3a30e823123939}\label{classFormRequestDb_a073afd7a2f960c039e3a30e823123939}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!Form\+Request\+Db@{Form\+Request\+Db}}
+\index{Form\+Request\+Db@{Form\+Request\+Db}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{Form\+Request\+Db()}{FormRequestDb()}}
+{\footnotesize\ttfamily Form\+Request\+Db\+::\+Form\+Request\+Db (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\hyperlink{classFormRequestDb}{Form\+Request\+Db} -\/ конструктор по умолчанию 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classFormRequestDb_ae86ba771347db116c4dc0d92b6dea2a8}\label{classFormRequestDb_ae86ba771347db116c4dc0d92b6dea2a8}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!enabled\+Button@{enabled\+Button}}
+\index{enabled\+Button@{enabled\+Button}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{enabled\+Button()}{enabledButton()}}
+{\footnotesize\ttfamily void Form\+Request\+Db\+::enabled\+Button (\begin{DoxyParamCaption}\item[{bool}]{flag }\end{DoxyParamCaption})}
+
+
+
+enabled\+Button делает доступнм кнопки при подключении к базе данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & true -\/ кнопки доступны, false -\/ кнопки не доступны \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFormRequestDb_a9752fbc1286338cf3fe1a9fee28ac4a7}\label{classFormRequestDb_a9752fbc1286338cf3fe1a9fee28ac4a7}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!result\+Data@{result\+Data}}
+\index{result\+Data@{result\+Data}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{result\+Data()}{resultData()}}
+{\footnotesize\ttfamily bool Form\+Request\+Db\+::result\+Data (\begin{DoxyParamCaption}\item[{const Q\+String\+List \&}]{data }\end{DoxyParamCaption})}
+
+
+
+result\+Data вывод данных после запроса пользователя 
+
+\begin{DoxyReturn}{Returns}
+true -\/ данные выведены 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFormRequestDb_af37eecece828d15fe8a0f2025bba6d6c}\label{classFormRequestDb_af37eecece828d15fe8a0f2025bba6d6c}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!select\+Table@{select\+Table}}
+\index{select\+Table@{select\+Table}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{select\+Table()}{selectTable()}}
+{\footnotesize\ttfamily bool Form\+Request\+Db\+::select\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+select\+Table заполняет основную таблицу данными 
+
+\begin{DoxyReturn}{Returns}
+true -\/ данные выведены 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFormRequestDb_a383d0f163ad200d2438e1549df626c4e}\label{classFormRequestDb_a383d0f163ad200d2438e1549df626c4e}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!set\+Column\+Name@{set\+Column\+Name}}
+\index{set\+Column\+Name@{set\+Column\+Name}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{set\+Column\+Name()}{setColumnName()}}
+{\footnotesize\ttfamily void Form\+Request\+Db\+::set\+Column\+Name (\begin{DoxyParamCaption}\item[{const Q\+String\+List \&}]{column }\end{DoxyParamCaption})}
+
+
+
+set\+Column\+Name -\/ принять список имён колонок 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFormRequestDb_ae6ec41ba642b5b9351d5d5077ffb97e5}\label{classFormRequestDb_ae6ec41ba642b5b9351d5d5077ffb97e5}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!set\+Count\+Row@{set\+Count\+Row}}
+\index{set\+Count\+Row@{set\+Count\+Row}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{set\+Count\+Row()}{setCountRow()}}
+{\footnotesize\ttfamily void Form\+Request\+Db\+::set\+Count\+Row (\begin{DoxyParamCaption}\item[{const unsigned int}]{count }\end{DoxyParamCaption})}
+
+
+
+set\+Count\+Row -\/ устанавливает количество строк в таблице 
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFormRequestDb_a6344496d9d92e92078dacf8218cae768}\label{classFormRequestDb_a6344496d9d92e92078dacf8218cae768}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!set\+Data\+Table@{set\+Data\+Table}}
+\index{set\+Data\+Table@{set\+Data\+Table}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{set\+Data\+Table()}{setDataTable()}}
+{\footnotesize\ttfamily void Form\+Request\+Db\+::set\+Data\+Table (\begin{DoxyParamCaption}\item[{const Q\+String\+List \&}]{data }\end{DoxyParamCaption})}
+
+
+
+set\+Data\+Table -\/ принять данные из базы данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFormRequestDb_ac5fe463263f876ef7e6531b99d6f224d}\label{classFormRequestDb_ac5fe463263f876ef7e6531b99d6f224d}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!set\+Table\+Name@{set\+Table\+Name}}
+\index{set\+Table\+Name@{set\+Table\+Name}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{set\+Table\+Name()}{setTableName()}}
+{\footnotesize\ttfamily void Form\+Request\+Db\+::set\+Table\+Name (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{table\+Name }\end{DoxyParamCaption})}
+
+
+
+set\+Table\+Name -\/ принять имя таблицы 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table\+Name} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFormRequestDb_a8e2f772b54c5bc321bb2aafd410881af}\label{classFormRequestDb_a8e2f772b54c5bc321bb2aafd410881af}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!signal\+\_\+request\+Db@{signal\+\_\+request\+Db}}
+\index{signal\+\_\+request\+Db@{signal\+\_\+request\+Db}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{signal\+\_\+request\+Db}{signal\_requestDb}}
+{\footnotesize\ttfamily void Form\+Request\+Db\+::signal\+\_\+request\+Db (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{str\+Query,  }\item[{bool}]{flag\+Select }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+signal\+\_\+request\+Db -\/ сигнал для передачи запроса к базе данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str\+Query} & -\/ запрос \\
+\hline
+{\em flag\+Select} & -\/ является ли запрос S\+E\+L\+E\+CT \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFormRequestDb_a975c3238a2e70f63172b2e7dd2a3d17d}\label{classFormRequestDb_a975c3238a2e70f63172b2e7dd2a3d17d}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!signal\+\_\+update\+Db@{signal\+\_\+update\+Db}}
+\index{signal\+\_\+update\+Db@{signal\+\_\+update\+Db}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{signal\+\_\+update\+Db}{signal\_updateDb}}
+{\footnotesize\ttfamily void Form\+Request\+Db\+::signal\+\_\+update\+Db (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{str\+Query }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+signal\+\_\+update\+Db -\/ обновление таблицы базы данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str\+Query} & -\/ запрос на обновление \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFormRequestDb_a3e6c1c86440f834a79f43e82a1568207}\label{classFormRequestDb_a3e6c1c86440f834a79f43e82a1568207}} 
+\index{Form\+Request\+Db@{Form\+Request\+Db}!signal\+\_\+update\+Table@{signal\+\_\+update\+Table}}
+\index{signal\+\_\+update\+Table@{signal\+\_\+update\+Table}!Form\+Request\+Db@{Form\+Request\+Db}}
+\subsubsection{\texorpdfstring{signal\+\_\+update\+Table}{signal\_updateTable}}
+{\footnotesize\ttfamily void Form\+Request\+Db\+::signal\+\_\+update\+Table (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{table\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+signal\+\_\+update\+Table 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table\+Name} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+formrequestdb.\+h\item 
+formrequestdb.\+cpp\end{DoxyCompactItemize}
