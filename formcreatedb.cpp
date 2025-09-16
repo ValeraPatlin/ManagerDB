@@ -7,9 +7,33 @@ FormCreateDB::FormCreateDB(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->setMinimumHeight(300);
+
     readingConfig();
 
     ui->cb_typeDatabase->setCurrentIndex(m_type_db);
+
+    if (m_type_db == 0)
+    {
+        ui->w_for_sqline->setVisible(true);
+        ui->w_for_pg_mysql->setVisible(false);
+    }
+    else
+    {
+        ui->w_for_sqline->setVisible(false);
+        ui->w_for_pg_mysql->setVisible(true);
+    }
+
+    ui->le_pathDb->setClearButtonEnabled(true);
+
+    if (ui->le_pathDb->text() == "")
+    {
+        ui->le_pathDb->setPlaceholderText("Укажите путь до базы данных SQLite");
+    }
+    else
+    {
+        ui->le_pathDb->setText(m_pathSqlite);
+    }
 
     ui->cb_nameDb->setEditable(true);
     ui->cb_nameDb->setInsertPolicy(QComboBox::InsertAtTop);
@@ -52,29 +76,33 @@ FormCreateDB::~FormCreateDB()
     delete ui;
 }
 
+
+
+
+void FormCreateDB::on_cb_typeDatabase_currentTextChanged(const QString &arg1)
+{
+    if (arg1 == "SQLite")
+    {
+        ui->w_for_pg_mysql->setVisible(false);
+        ui->w_for_sqline->setVisible(true);
+    }
+    else
+    {
+        ui->w_for_pg_mysql->setVisible(true);
+        ui->w_for_sqline->setVisible(false);
+    }
+}
+
 void FormCreateDB::dataInfo(const QString &strInfo)
 {
     ui->te_info->append(strInfo);
 }
 
+
 void FormCreateDB::on_pb_openAndCloseDb_clicked()
 {
-    bool ok_toInt{};
-    int port = ui->cb_portDb->currentText().toInt(&ok_toInt);
-
-    if (!ok_toInt || port <= 0 || port > 65535)
-    {
-        dataInfo("Внимание!\n Порт для подключения указан не верно!");
-        return;
-    }
-
-    if (!checkIpAddress(ui->cb_ipDb->currentText()))
-    {
-        dataInfo("Внимание!\n Ip адрес указан не верно!");
-        return;
-    }
-
     QString str_typeDB;
+    int port{};
 
     if (ui->cb_typeDatabase->currentText() == "SQLite")
     {
@@ -87,6 +115,24 @@ void FormCreateDB::on_pb_openAndCloseDb_clicked()
     else if (ui->cb_typeDatabase->currentText() == "MySQL")
     {
         str_typeDB = "QMYSQL";
+    }
+
+    if (str_typeDB != "QSQLITE")
+    {
+        bool ok_toInt{};
+        port = ui->cb_portDb->currentText().toInt(&ok_toInt);
+
+        if (!ok_toInt || port <= 0 || port > 65535)
+        {
+            dataInfo("Внимание!\n Порт для подключения указан не верно!");
+            return;
+        }
+
+        if (!checkIpAddress(ui->cb_ipDb->currentText()))
+        {
+            dataInfo("Внимание!\n Ip адрес указан не верно!");
+            return;
+        }
     }
 
     if (ui->cb_saveData->isChecked())
@@ -113,11 +159,21 @@ void FormCreateDB::on_pb_openAndCloseDb_clicked()
             m_port << ui->cb_portDb->currentText();
         }
 
+        m_pathSqlite = ui->le_pathDb->text();
+
         writeConfig();
     }
 
-    emit signal_openDb(str_typeDB, ui->cb_nameDb->currentText(), port, ui->cb_ipDb->currentText(),
-                       ui->cb_nameUserDb->currentText(), ui->le_passwdDb->text());
+    if (str_typeDB == "QSQLITE")
+    {
+        emit signal_openDb(str_typeDB, ui->le_pathDb->text());
+    }
+    else
+    {
+        emit signal_openDb(str_typeDB, ui->cb_nameDb->currentText(),
+                           port, ui->cb_ipDb->currentText(),
+                           ui->cb_nameUserDb->currentText(), ui->le_passwdDb->text());
+    }
     emit signal_clearNameListTableDb();
 }
 
@@ -153,6 +209,7 @@ void FormCreateDB::readingConfig(const QString &path)
     m_hostName = m_settings.value("hostName", QStringList({"", "127.0.0.1"})).toStringList();
     m_userName = m_settings.value("userName", QStringList({"", "postgres"})).toStringList();
     m_port = m_settings.value("port", QStringList({"", "5432"})).toStringList();
+    m_pathSqlite = m_settings.value("pathSqlite", "").toString();
 
     m_settings.endGroup();
     m_settings.sync();
@@ -168,6 +225,7 @@ void FormCreateDB::writeConfig(const QString &path)
     m_settings.setValue("hostName", m_hostName);
     m_settings.setValue("userName", m_userName);
     m_settings.setValue("post", m_port);
+    m_settings.setValue("pathSqlite", m_pathSqlite);
 
     m_settings.endGroup();
     m_settings.sync();
@@ -211,4 +269,14 @@ void FormCreateDB::on_cb_showPasswd_clicked(bool checked)
     {
         ui->le_passwdDb->setEchoMode(QLineEdit::Password);
     }
+}
+
+//
+void FormCreateDB::on_pb_pathDb_clicked()
+{
+    ui->le_pathDb->setText(
+                QFileDialog::getOpenFileName(
+                    this,
+                    "Укажите путь до базы данных SQLite",
+                    QString(ui->le_pathDb->text() == "" ? "./" : ui->le_pathDb->text())));
 }

@@ -61,8 +61,9 @@ private slots:
      * \param userName имя пользователя
      * \param passwd пароль
      */
-    void slot_openDb(const QString addDataBase, const QString name_db, const int port,
-                     const QString hostName, const QString userName, const QString passwd);
+    void slot_openDb(const QString addDataBase, const QString name_db,
+                     const int port = 0, const QString hostName = "127.0.0.1",
+                     const QString userName = "", const QString passwd = "");
 
     /*!
      * \brief slot_selectTable заполнение

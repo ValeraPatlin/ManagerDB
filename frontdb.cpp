@@ -2,9 +2,6 @@
 
 FrontDB::FrontDB()
 {
-    // SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public';
-
-    // SELECT column_name FROM information_schema.columns WHERE table_name='vs_node';
 }
 
 FrontDB::~FrontDB()
@@ -31,6 +28,8 @@ bool FrontDB::openDb(const QString &addDataBase, const QString &name_db, const i
     }
     else
     {
+        typeDb = addDataBase;
+        m_query = nullptr;
         m_query = new QSqlQuery(m_db);
         m_flagOpenDb = true;
         return true;
@@ -38,45 +37,82 @@ bool FrontDB::openDb(const QString &addDataBase, const QString &name_db, const i
     return false;
 }
 
+
 QStringList FrontDB::tableName()
 {
     QStringList result;
 
     if (m_flagOpenDb)
     {
-        if (!m_query->exec("SELECT tablename FROM pg_catalog.pg_tables"
-                           " WHERE schemaname = 'public';"))
+        QString strQuery;
+        QString strName;
+
+        if (typeDb == "QSQLITE")
         {
-            qDebug() << "\n  ERROR:  " << m_query->lastError().text();
+            strQuery = "SELECT name FROM sqlite_master WHERE type = 'table';";
+            strName = "name";
+        }
+        else
+        {
+            strQuery = "SELECT tablename FROM pg_catalog.pg_tables"
+                       " WHERE schemaname = 'public';";
+            strName = "tablename";
+        }
+
+        if (!m_query->exec(strQuery))
+        {
+            throw QString("ERROR!  Возникла ошибка при попытке выполнить запрос: \n"
+                          + m_query->lastError().text());
         }
         else
         {
             while (m_query->next())
             {
-                result << m_query->value("tablename").toString();
+                result << m_query->value(strName).toString();
             }
         }
     }
     return result;
 }
 
-QStringList FrontDB::selectColumnName(const QString &tebleName)
+QStringList FrontDB::selectColumnName(const QString &tableName)
 {
-    QStringList result;
     m_query->clear();
-    m_query->prepare("SELECT column_name FROM information_schema.columns WHERE"
-                         " table_name=:tebleName ORDER BY ordinal_position;");
-    m_query->bindValue(":tebleName", tebleName);
 
-    if (!m_query->exec())
+    QStringList result;
+    QString strQuery;
+
+    if (typeDb == "QSQLITE")
     {
-        qDebug() << "\n  ERROR: " << m_query->lastError().text();
+        strQuery = QString("PRAGMA table_info('%1');").arg(tableName);
+    }
+    else
+    {
+        strQuery = QString("SELECT column_name FROM information_schema.columns WHERE"
+                           " table_name='%1' ORDER BY ordinal_position;").arg(tableName);
+//        m_query->prepare("SELECT column_name FROM information_schema.columns WHERE"
+//                             " table_name=:tableName ORDER BY ordinal_position;");
+//        m_query->bindValue(":tableName", tableName);
+    }
+
+    if (!m_query->exec(strQuery))
+    {
+        throw QString("\n  ERROR: " + m_query->lastError().text());
     }
     else
     {
         while (m_query->next())
         {
-            QString elem = m_query->value(0).toString();
+            QString elem;
+
+            if (typeDb == "QSQLITE")
+            {
+                elem = m_query->value("name").toString();
+            }
+            else
+            {
+                elem = m_query->value(0).toString();
+            }
 
             if (!result.contains(elem))
             {
@@ -88,9 +124,9 @@ QStringList FrontDB::selectColumnName(const QString &tebleName)
     return result;
 }
 
-QStringList FrontDB::selectTable(const QString &tebleName)
+QStringList FrontDB::selectTable(const QString &tableName)
 {
-    return requestDb_select("SELECT * FROM " + tebleName +";");
+    return requestDb_select(QString("SELECT * FROM %1;").arg(tableName));
 }
 
 const QStringList FrontDB::requestDb_select(const QString &strQuery)

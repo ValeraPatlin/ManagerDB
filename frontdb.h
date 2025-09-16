@@ -43,17 +43,17 @@ public:
 
     /*!
      * \brief selectColumnName - получение имён столбцов
-     * \param tebleName - имя таблицы
+     * \param tableName - имя таблицы
      * \return
      */
-    QStringList selectColumnName(const QString& tebleName);
+    QStringList selectColumnName(const QString& tableName);
 
     /*!
      * \brief selectTable - запрос select
-     * \param tebleName - имя таблицы
+     * \param tableName - имя таблицы
      * \return
      */
-    QStringList selectTable(const QString& tebleName);
+    QStringList selectTable(const QString& tableName);
 
     /*!
      * \brief requestDb_select - запрос select
@@ -78,6 +78,8 @@ public:
 private:
     QSqlDatabase m_db;
     QSqlQuery* m_query;
+
+    QString typeDb;
 
     bool m_flagOpenDb{};
 

@@ -7,6 +7,7 @@
 #include <QStringList>
 #include <QSettings>
 #include <QCompleter>
+#include <QFileDialog>
 #include <QDebug>
 
 namespace Ui {
@@ -36,7 +37,7 @@ public:
 
 signals:
     /*!
-     * \brief signal_openDb сигнал отправляет данные для подключение к базе данных
+     * \brief signal_openDb - сигнал отправляет данные для подключение к базе данных
      * \param addDataBase - тип базы данных
      * \param name_db - имя базы данных
      * \param port - порт
@@ -46,6 +47,13 @@ signals:
      */
     void signal_openDb(const QString addDataBase, const QString name_db, const int port,
                        const QString hostName, const QString userName, const QString passwd);
+
+    /*!
+     * \brief signal_openDb - сигнал отправляет данные для подключение к базе данных
+     * \param addDataBase - тип базы данных
+     */
+    void signal_openDb(const QString addDataBase, const QString pathDb);
+
     /*!
      * \brief signal_clearNameListTableDb - очиститиь список таблиц в базе данных
      */
@@ -83,15 +91,27 @@ private slots:
      */
     void on_cb_showPasswd_clicked(bool checked);
 
+    /*!
+     * \brief on_cb_typeDatabase_currentTextChanged - какая база данных выбрана
+     * \param arg1 - тип базы данных
+     */
+    void on_cb_typeDatabase_currentTextChanged(const QString &arg1);
+
+    /*!
+     * \brief on_pb_pathDb_clicked - узазать путь до базы данных sqlite
+     */
+    void on_pb_pathDb_clicked();
+
 private:
     Ui::FormCreateDB *ui;
 
-    int m_type_db{};        //!< номер типв базы данных
-    QStringList m_name_db;  //!< имя базы данных
-    QStringList m_hostName; //!< ip адрес базы данных
-    QStringList m_userName; //!< имяни пользователя
-    QStringList m_passwd;   //!< пароль базы данных
-    QStringList m_port;     //!< порт базы данных
+    int m_type_db{};          //!< номер типв базы данных
+    QStringList m_name_db;    //!< имя базы данных
+    QStringList m_hostName;   //!< ip адрес базы данных
+    QStringList m_userName;   //!< имяни пользователя
+    QStringList m_passwd;     //!< пароль базы данных
+    QStringList m_port;       //!< порт базы данных
+    QString m_pathSqlite;     //!< путь до базы данных для SQLite
 
     /*!
      * \brief checkIpAddress проверка ip адреса на корректность

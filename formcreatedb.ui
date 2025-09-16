@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>310</height>
+    <width>819</width>
+    <height>372</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,154 +21,184 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <layout class="QHBoxLayout" name="h_layout_main">
         <item>
-         <layout class="QFormLayout" name="formLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Тип базы данных</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="cb_typeDatabase">
+         <layout class="QVBoxLayout" name="v_layout_for_db">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
-             <property name="text">
-              <string>SQLite</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>PosgreSQL</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>MySQL</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Имя базы данных:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>ip адрес:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>Порт:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>Имя пользователя:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Пароль:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QComboBox" name="cb_nameDb"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pb_clear_NameDb">
+             <widget class="QLabel" name="label">
               <property name="text">
-               <string>Удалить</string>
+               <string>Тип базы данных</string>
               </property>
              </widget>
             </item>
-           </layout>
-          </item>
-          <item row="2" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
-             <widget class="QComboBox" name="cb_ipDb"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pb_clear_idDb">
-              <property name="text">
-               <string>Удалить</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="3" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
-            <item>
-             <widget class="QComboBox" name="cb_portDb"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pb_clear_portDb">
-              <property name="text">
-               <string>Удалить</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="4" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_7">
-            <item>
-             <widget class="QComboBox" name="cb_nameUserDb"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pb_clear_nameUser">
-              <property name="text">
-               <string>Удалить</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="5" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_8">
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_2">
+             <widget class="QComboBox" name="cb_typeDatabase">
               <item>
-               <widget class="QLineEdit" name="le_passwdDb"/>
+               <property name="text">
+                <string>SQLite</string>
+               </property>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_9">
-                <item>
-                 <widget class="QCheckBox" name="cb_showPasswd">
-                  <property name="text">
-                   <string>Показать пароль</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QCheckBox" name="cb_saveData">
-                  <property name="text">
-                   <string>Сохранить данные</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <property name="text">
+                <string>PosgreSQL</string>
+               </property>
               </item>
-             </layout>
+              <item>
+               <property name="text">
+                <string>MySQL</string>
+               </property>
+              </item>
+             </widget>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QWidget" name="w_for_sqline" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <item>
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>Путь до базы данных:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="le_pathDb"/>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pb_pathDb">
+                 <property name="text">
+                  <string>Указать путь</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="w_for_pg_mysql" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_12">
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>Имя базы данных:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cb_nameDb"/>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pb_clear_NameDb">
+                 <property name="text">
+                  <string>Удалить</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_13">
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>ip адрес:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cb_ipDb"/>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pb_clear_idDb">
+                 <property name="text">
+                  <string>Удалить</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_14">
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>Порт:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cb_portDb"/>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pb_clear_portDb">
+                 <property name="text">
+                  <string>Удалить</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_15">
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Имя пользователя:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cb_nameUserDb"/>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pb_clear_nameUser">
+                 <property name="text">
+                  <string>Удалить</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_16">
+               <item>
+                <widget class="QLabel" name="label_6">
+                 <property name="text">
+                  <string>Пароль:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_2">
+                 <item>
+                  <widget class="QLineEdit" name="le_passwdDb"/>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_9">
+                   <item>
+                    <widget class="QCheckBox" name="cb_showPasswd">
+                     <property name="text">
+                      <string>Показать пароль</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
           </item>
          </layout>
         </item>
@@ -199,6 +229,13 @@
              <widget class="QPushButton" name="pb_openAndCloseDb">
               <property name="text">
                <string>Подключение</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cb_saveData">
+              <property name="text">
+               <string>Сохранить данные</string>
               </property>
              </widget>
             </item>

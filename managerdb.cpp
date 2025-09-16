@@ -31,6 +31,8 @@ ManagerDB::ManagerDB(QWidget *parent) :
 
     connect(m_formCreateDb, SIGNAL(signal_openDb(QString,QString,int,QString,QString,QString)),
             SLOT(slot_openDb(QString,QString,int,QString,QString,QString)));
+    connect(m_formCreateDb, SIGNAL(signal_openDb(QString,QString)),
+            SLOT(slot_openDb(QString,QString)));
     connect(m_formCreateDb, SIGNAL(signal_clearNameListTableDb()),
             SLOT(slot_clearNameListTableDb));
 
@@ -74,6 +76,10 @@ void ManagerDB::slot_openDb(const QString addDataBase, const QString name_db,
             m_formCreateDb->dataInfo("База данных: " + name_db + " - открыта!");
 
             m_formRequestDb->enabledButton(true);
+        }
+        else
+        {
+            m_formCreateDb->dataInfo("База данных: " + name_db + " - открыть не удалось!");
         }
     }
     catch (QString strError)
