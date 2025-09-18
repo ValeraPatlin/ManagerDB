@@ -31,10 +31,9 @@ ManagerDB::ManagerDB(QWidget *parent) :
 
     connect(m_formCreateDb, SIGNAL(signal_openDb(QString,QString,int,QString,QString,QString)),
             SLOT(slot_openDb(QString,QString,int,QString,QString,QString)));
+
     connect(m_formCreateDb, SIGNAL(signal_openDb(QString,QString)),
             SLOT(slot_openDb(QString,QString)));
-    connect(m_formCreateDb, SIGNAL(signal_clearNameListTableDb()),
-            SLOT(slot_clearNameListTableDb));
 
     connect(m_formTableName, SIGNAL(signal_selectTable(QString)),
             SLOT(slot_selectTable(QString)));
@@ -72,6 +71,8 @@ void ManagerDB::slot_openDb(const QString addDataBase, const QString name_db,
     {
         if (m_frontDb.openDb(addDataBase, name_db, port, hostName, userName, passwd))
         {
+            m_formTableName->clearListNameTable();
+            m_formRequestDb->clearTable();
             m_formTableName->redrawListTableName(m_frontDb.tableName());
             m_formCreateDb->dataInfo("База данных: " + name_db + " - открыта!");
 
@@ -79,12 +80,12 @@ void ManagerDB::slot_openDb(const QString addDataBase, const QString name_db,
         }
         else
         {
-            m_formCreateDb->dataInfo("База данных: " + name_db + " - открыть не удалось!");
+            m_formCreateDb->dataInfo("База данных: " + name_db + " - открыть не удалось!", true);
         }
     }
     catch (QString strError)
     {
-        m_formCreateDb->dataInfo(strError);
+        m_formCreateDb->dataInfo(strError, true);
     }
 }
 
@@ -100,7 +101,7 @@ void ManagerDB::slot_selectTable(const QString &tableName)
     }
     catch (QString strError)
     {
-        m_formCreateDb->dataInfo("\n При выполнение запроса возникла ошибка: \n" + strError);
+        m_formCreateDb->dataInfo("\n При выполнение запроса возникла ошибка: \n" + strError, true);
     }
 }
 
@@ -112,10 +113,6 @@ void ManagerDB::slot_updataDb(const QString &strQuery)
     }
 }
 
-void ManagerDB::slot_clearNameListTableDb()
-{
-    m_formTableName->clearListNameTable();
-}
 
 void ManagerDB::slot_requestDb(const QString &strQuery, bool flagSelect)
 {
@@ -132,6 +129,6 @@ void ManagerDB::slot_requestDb(const QString &strQuery, bool flagSelect)
     }
     catch (QString strError)
     {
-        m_formCreateDb->dataInfo("\n При выполнение запроса возникла ошибка: \n" + strError);
+        m_formCreateDb->dataInfo("\n При выполнение запроса возникла ошибка: \n" + strError, true);
     }
 }

@@ -30,6 +30,11 @@ public:
     ~FormRequestDb();
 
     /*!
+     * \brief clearTable - очистить таблицу
+     */
+    void clearTable();
+
+    /*!
      * \brief setColumnName - принять список имён колонок
      * \param column
      */

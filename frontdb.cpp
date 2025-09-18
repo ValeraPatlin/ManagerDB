@@ -2,19 +2,22 @@
 
 FrontDB::FrontDB()
 {
+    newNameConnectDb = "connectDb_";
 }
 
 FrontDB::~FrontDB()
 {
-    delete m_query;
+    m_db.close();
 }
 
 bool FrontDB::openDb(const QString &addDataBase, const QString &name_db, const int port,
                      const QString &hostName, const QString &userName, const QString &passwd)
 {
-    m_query = nullptr;
     m_db.close();
-    m_db = QSqlDatabase::addDatabase(addDataBase);
+
+    newNameConnectDb += QString::number(++numConnectDb);
+
+    m_db = QSqlDatabase::addDatabase(addDataBase, newNameConnectDb);
     m_db.setPort(port);
     m_db.setDatabaseName(name_db);
     m_db.setHostName(hostName);
@@ -29,8 +32,6 @@ bool FrontDB::openDb(const QString &addDataBase, const QString &name_db, const i
     else
     {
         typeDb = addDataBase;
-        m_query = nullptr;
-        m_query = new QSqlQuery(m_db);
         m_flagOpenDb = true;
         return true;
     }
@@ -52,23 +53,37 @@ QStringList FrontDB::tableName()
             strQuery = "SELECT name FROM sqlite_master WHERE type = 'table';";
             strName = "name";
         }
-        else
+        else if (typeDb == "QPSQL")
         {
             strQuery = "SELECT tablename FROM pg_catalog.pg_tables"
                        " WHERE schemaname = 'public';";
             strName = "tablename";
         }
+        else if (typeDb == "QMYSQL")
+        {
+            strQuery = "SHOW TABLES;";
+            // "SHOW TABLES FROM "
+        }
 
-        if (!m_query->exec(strQuery))
+        QSqlQuery query (m_db);
+
+        if (!query.exec(strQuery))
         {
             throw QString("ERROR!  Возникла ошибка при попытке выполнить запрос: \n"
-                          + m_query->lastError().text());
+                          + query.lastError().text());
         }
         else
         {
-            while (m_query->next())
+            while (query.next())
             {
-                result << m_query->value(strName).toString();
+                if (typeDb == "QMYSQL")
+                {
+                    result << query.value(0).toString();
+                }
+                else
+                {
+                    result << query.value(strName).toString();
+                }
             }
         }
     }
@@ -77,8 +92,6 @@ QStringList FrontDB::tableName()
 
 QStringList FrontDB::selectColumnName(const QString &tableName)
 {
-    m_query->clear();
-
     QStringList result;
     QString strQuery;
 
@@ -86,32 +99,43 @@ QStringList FrontDB::selectColumnName(const QString &tableName)
     {
         strQuery = QString("PRAGMA table_info('%1');").arg(tableName);
     }
-    else
+    else if (typeDb == "QPSQL")
     {
         strQuery = QString("SELECT column_name FROM information_schema.columns WHERE"
                            " table_name='%1' ORDER BY ordinal_position;").arg(tableName);
-//        m_query->prepare("SELECT column_name FROM information_schema.columns WHERE"
+
+//        query.prepare("SELECT column_name FROM information_schema.columns WHERE"
 //                             " table_name=:tableName ORDER BY ordinal_position;");
-//        m_query->bindValue(":tableName", tableName);
+//        query.bindValue(":tableName", tableName);
+    }
+    else if (typeDb == "QMYSQL")
+    {
+        strQuery = QString("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS"
+                   " WHERE TABLE_NAME='%1';").arg(tableName);
+
+        // TABLE_SCHEMA='%1' AND TABLE_NAME='%2';
+        // "SHOW COLUMNS FROM users;"
     }
 
-    if (!m_query->exec(strQuery))
+    QSqlQuery query(m_db);
+
+    if (!query.exec(strQuery))
     {
-        throw QString("\n  ERROR: " + m_query->lastError().text());
+        throw QString("\n  ERROR: " + query.lastError().text());
     }
     else
     {
-        while (m_query->next())
+        while (query.next())
         {
             QString elem;
 
             if (typeDb == "QSQLITE")
             {
-                elem = m_query->value("name").toString();
+                elem = query.value("name").toString();
             }
             else
             {
-                elem = m_query->value(0).toString();
+                elem = query.value(0).toString();
             }
 
             if (!result.contains(elem))
@@ -119,7 +143,6 @@ QStringList FrontDB::selectColumnName(const QString &tableName)
                 result << elem;
             }
         }
-        m_query->clear();
     }
     return result;
 }
@@ -134,38 +157,41 @@ const QStringList FrontDB::requestDb_select(const QString &strQuery)
     QStringList result;
     m_numberRow = 0;
 
-    if (!m_query->exec(strQuery))
+    QSqlQuery query(m_db);
+
+    if (!query.exec(strQuery))
     {
-        qDebug() << "\n  ERROR: " << m_query->lastError().text();
-        throw m_query->lastError().text();
+        qDebug() << "\n  ERROR: " << query.lastError().text();
+        throw query.lastError().text();
     }
     else
     {
-        QSqlRecord record = m_query->record();
+        QSqlRecord record = query.record();
         int columns = record.count();
 
-        while (m_query->next())
+        while (query.next())
         {
             QStringList rowData;
             ++m_numberRow;
 
             for (int i = 0; i < columns; ++i)
             {
-                QString value = m_query->value(i).toString();
+                QString value = query.value(i).toString();
                 rowData.append(value);
             }
             result.append(rowData.join(", "));
         }
-        m_query->clear();
     }
     return result;
 }
 
 const bool FrontDB::requestDb(const QString &strQuery)
 {
-    if (!m_query->exec(strQuery))
+    QSqlQuery query(m_db);
+
+    if (!query.exec(strQuery))
     {
-        qDebug() << "\n  ERROR: " << m_query->lastError().text();
+        qDebug() << "\n  ERROR: " << query.lastError().text();
         return false;
     }
     return true;

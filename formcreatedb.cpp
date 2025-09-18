@@ -26,7 +26,7 @@ FormCreateDB::FormCreateDB(QWidget *parent) :
 
     ui->le_pathDb->setClearButtonEnabled(true);
 
-    if (ui->le_pathDb->text() == "")
+    if (m_pathSqlite == "")
     {
         ui->le_pathDb->setPlaceholderText("Укажите путь до базы данных SQLite");
     }
@@ -93,9 +93,22 @@ void FormCreateDB::on_cb_typeDatabase_currentTextChanged(const QString &arg1)
     }
 }
 
-void FormCreateDB::dataInfo(const QString &strInfo)
+void FormCreateDB::dataInfo(const QString &strInfo, bool flagError)
 {
-    ui->te_info->append(strInfo);
+    QTextCursor cursor = ui->te_info->textCursor();
+    QTextCharFormat format;
+
+    if (flagError)
+    {
+        format.setForeground(QColor("#ff0000"));
+    }
+    else
+    {
+        format.setForeground(QColor("#000000"));
+    }
+
+    cursor.setCharFormat(format);
+    cursor.insertText(strInfo + "\n");
 }
 
 
@@ -124,13 +137,13 @@ void FormCreateDB::on_pb_openAndCloseDb_clicked()
 
         if (!ok_toInt || port <= 0 || port > 65535)
         {
-            dataInfo("Внимание!\n Порт для подключения указан не верно!");
+            dataInfo("Внимание!\n Порт для подключения указан не верно!", true);
             return;
         }
 
         if (!checkIpAddress(ui->cb_ipDb->currentText()))
         {
-            dataInfo("Внимание!\n Ip адрес указан не верно!");
+            dataInfo("Внимание!\n Ip адрес указан не верно!", true);
             return;
         }
     }
@@ -166,15 +179,21 @@ void FormCreateDB::on_pb_openAndCloseDb_clicked()
 
     if (str_typeDB == "QSQLITE")
     {
-        emit signal_openDb(str_typeDB, ui->le_pathDb->text());
+        if (ui->le_pathDb->text() != "")
+        {
+            emit signal_openDb(str_typeDB, ui->le_pathDb->text());
+        }
+        else
+        {
+            dataInfo("Укажите путь до базы данных SQLite", true);
+        }
     }
-    else
+    else if (str_typeDB == "QPSQL")
     {
         emit signal_openDb(str_typeDB, ui->cb_nameDb->currentText(),
                            port, ui->cb_ipDb->currentText(),
                            ui->cb_nameUserDb->currentText(), ui->le_passwdDb->text());
     }
-    emit signal_clearNameListTableDb();
 }
 
 

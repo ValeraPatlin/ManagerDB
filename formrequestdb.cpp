@@ -26,6 +26,16 @@ FormRequestDb::~FormRequestDb()
     delete ui;
 }
 
+
+
+
+void FormRequestDb::clearTable()
+{
+    ui->tw_infoDb->clear();
+    ui->tw_infoDb->setColumnCount(0);
+    ui->tw_infoDb->setRowCount(0);
+}
+
 void FormRequestDb::setColumnName(const QStringList &column)
 {
     m_columnName = column;
@@ -78,9 +88,6 @@ bool FormRequestDb::resultData(const QStringList &data)
     ui->te_result->append("\n Данные выведены.");
     return true;
 }
-
-
-
 
 
 void FormRequestDb::on_pb_startRequestDb_clicked()

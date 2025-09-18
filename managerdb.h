@@ -83,11 +83,6 @@ private slots:
      * \param strQuery - запрос на выполнение
      */
     void slot_updataDb(const QString& strQuery);
-
-    /*!
-     * \brief slot_clearNameListTableDb - очистеть список таблиц
-     */
-    void slot_clearNameListTableDb();
 };
 
 #endif // MANAGERDB_H

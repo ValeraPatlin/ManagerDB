@@ -8,6 +8,9 @@
 #include <QSettings>
 #include <QCompleter>
 #include <QFileDialog>
+#include <QTextCharFormat>
+#include <QTextCursor>
+#include <QColor>
 #include <QDebug>
 
 namespace Ui {
@@ -29,11 +32,16 @@ public:
     explicit FormCreateDB(QWidget *parent = 0);
     ~FormCreateDB();
 
+
     /*!
      * \brief dataInfo - для вывода сообщений и ошибок
      * \param strInfo - сообщение для вывода
+     * \param flagError - флаг, является ли принятое сообщение ошибкой,
+     * false - обычное сообщение
+     * true - сообщение с ошибкой
+     * по умолчанию всегда false
      */
-    void dataInfo(const QString& strInfo);
+    void dataInfo(const QString& strInfo, bool flagError = false);
 
 signals:
     /*!
@@ -53,11 +61,6 @@ signals:
      * \param addDataBase - тип базы данных
      */
     void signal_openDb(const QString addDataBase, const QString pathDb);
-
-    /*!
-     * \brief signal_clearNameListTableDb - очиститиь список таблиц в базе данных
-     */
-    void signal_clearNameListTableDb();
 
 private slots:
     /*!

@@ -77,9 +77,11 @@ public:
 
 private:
     QSqlDatabase m_db;
-    QSqlQuery* m_query;
 
     QString typeDb;
+
+    QString newNameConnectDb;   //!< Имя нового подключения к базе данных
+    int numConnectDb{};
 
     bool m_flagOpenDb{};
 
